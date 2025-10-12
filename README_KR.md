@@ -17,7 +17,7 @@ Obsidian 마크다운 파일을 네이버 블로그 호환 HTML로 자동 변환
 ### 1. 저장소 복제
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/naver-blog-converter.git
+git clone https://github.com/juliuschun/naver-blog-converter.git
 cd naver-blog-converter
 ```
 

@@ -9,7 +9,7 @@ Thank you for contributing to Naver Blog Converter!
 ### 이슈 제보
 
 버그나 기능 요청이 있으시면:
-1. [Issues](https://github.com/YOUR_USERNAME/naver-blog-converter/issues)에서 기존 이슈 확인
+1. [Issues](https://github.com/juliuschun/naver-blog-converter/issues)에서 기존 이슈 확인
 2. 없으면 새 이슈 생성
 3. 가능한 자세히 설명 (재현 방법, 환경 등)
 
@@ -44,7 +44,7 @@ uv run python md2naver.py test-file.md --gcs
 ### Reporting Issues
 
 If you find a bug or want to request a feature:
-1. Check existing [Issues](https://github.com/YOUR_USERNAME/naver-blog-converter/issues)
+1. Check existing [Issues](https://github.com/juliuschun/naver-blog-converter/issues)
 2. Create a new issue if not found
 3. Provide details (reproduction steps, environment, etc.)
 

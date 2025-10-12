@@ -17,8 +17,8 @@ cd /Users/julius/Documents/naver_blog
 # Git 초기화 (이미 되어있으면 생략)
 git init
 
-# 원격 저장소 추가 (YOUR_USERNAME을 실제 GitHub 사용자명으로 변경)
-git remote add origin https://github.com/YOUR_USERNAME/naver-blog-converter.git
+# 원격 저장소 추가 (juliuschun을 실제 GitHub 사용자명으로 변경)
+git remote add origin https://github.com/juliuschun/naver-blog-converter.git
 
 # 모든 파일 추가
 git add .
@@ -41,7 +41,7 @@ git push -u origin main
 
 ## 3. README 업데이트
 
-GitHub에서 YOUR_USERNAME 부분을 실제 사용자명으로 변경:
+GitHub에서 juliuschun 부분을 실제 사용자명으로 변경:
 
 ### 파일 목록
 - `README.md` (한국어)
@@ -52,7 +52,7 @@ GitHub에서 YOUR_USERNAME 부분을 실제 사용자명으로 변경:
 
 찾아서 변경:
 ```
-YOUR_USERNAME → 실제_사용자명
+juliuschun → 실제_사용자명
 ```
 
 ## 4. Topics 추가
@@ -96,7 +96,7 @@ YOUR_USERNAME → 실제_사용자명
 
 ### 설치
 \`\`\`bash
-git clone https://github.com/YOUR_USERNAME/naver-blog-converter.git
+git clone https://github.com/juliuschun/naver-blog-converter.git
 cd naver-blog-converter
 ./install.sh
 \`\`\`
@@ -106,7 +106,7 @@ cd naver-blog-converter
 uv run python md2naver.py your-file.md --gcs
 \`\`\`
 
-자세한 내용은 [README.md](https://github.com/YOUR_USERNAME/naver-blog-converter/blob/main/README.md) 참조
+자세한 내용은 [README.md](https://github.com/juliuschun/naver-blog-converter/blob/main/README.md) 참조
 ```
 
 5. Publish release
@@ -120,8 +120,8 @@ uv run python md2naver.py your-file.md --gcs
 
 ![Python](https://img.shields.io/badge/python-3.11%2B-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![GitHub stars](https://img.shields.io/github/stars/YOUR_USERNAME/naver-blog-converter)
-![GitHub issues](https://img.shields.io/github/issues/YOUR_USERNAME/naver-blog-converter)
+![GitHub stars](https://img.shields.io/github/stars/juliuschun/naver-blog-converter)
+![GitHub issues](https://img.shields.io/github/issues/juliuschun/naver-blog-converter)
 ```
 
 ## 8. 사용자 가이드
@@ -130,7 +130,7 @@ uv run python md2naver.py your-file.md --gcs
 
 ```bash
 # 저장소 복제
-git clone https://github.com/YOUR_USERNAME/naver-blog-converter.git
+git clone https://github.com/juliuschun/naver-blog-converter.git
 cd naver-blog-converter
 
 # 설치 스크립트 실행
@@ -186,7 +186,7 @@ jobs:
 - Google Cloud Storage 자동 업로드
 - 복사-붙여넣기만 하면 끝!
 
-GitHub: https://github.com/YOUR_USERNAME/naver-blog-converter
+GitHub: https://github.com/juliuschun/naver-blog-converter
 ```
 
 ## 완료!
