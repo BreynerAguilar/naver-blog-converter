@@ -1,0 +1,14 @@
+[project]
+name = "naver-blog"
+version = "0.1.0"
+description = "Markdown to Naver Blog converter - transforms markdown files with mermaid diagrams into Naver-compatible HTML"
+requires-python = ">=3.11"
+dependencies = [
+    "markdown>=3.5",
+    "beautifulsoup4>=4.12.0",
+    "google-cloud-storage>=2.10.0",
+    "google-auth>=2.23.0",
+]
+
+[project.scripts]
+md2naver = "md2naver:main"

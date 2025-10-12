@@ -1,0 +1,40 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Naver Blog Converter specific
+
+# Output directories
+naver_*/
+naver_output_*/
+
+# Environment and credentials
+.env
+gcs-credentials.json
+*-credentials.json
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+temp.mmd
+*.tmp
+*.bak
+
+# Test outputs
+test_output/
+examples/output/
