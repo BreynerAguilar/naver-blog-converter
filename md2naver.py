@@ -221,11 +221,17 @@ class NaverBlogConverter:
                 td['style'] = 'border: 1px solid #ddd; padding: 12px; text-align: left;'
 
         # Add blank paragraphs between elements for better spacing in Naver
-        # Find all paragraph tags and add spacing
+        # Don't add spacing inside lists or between list items
         for tag in soup.find_all(['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'ul', 'ol', 'blockquote', 'pre', 'table']):
             # Don't add spacing if next element is <hr> (구분선 doesn't need top spacing)
             next_tag = tag.find_next_sibling()
             if next_tag and next_tag.name == 'hr':
+                continue
+
+            # Don't add spacing if this element is inside a list (ul/ol)
+            # Lists need to stay compact to maintain proper numbering
+            parent = tag.parent
+            if parent and parent.name in ['ul', 'ol', 'li']:
                 continue
 
             # Add a blank paragraph after each major block element
