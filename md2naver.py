@@ -65,8 +65,24 @@ class NaverBlogConverter:
 
         # GCS configuration
         self.use_gcs = use_gcs
-        self.gcs_project = gcs_project or "n8nprojects-444223"
-        self.gcs_bucket = gcs_bucket or "n8nprojects-naverblog"
+
+        # Load from config if not provided
+        if use_gcs:
+            from config import GCS_PROJECT_ID, GCS_BUCKET_NAME
+            self.gcs_project = gcs_project or GCS_PROJECT_ID
+            self.gcs_bucket = gcs_bucket or GCS_BUCKET_NAME
+
+            if not self.gcs_project or not self.gcs_bucket:
+                raise ValueError(
+                    "GCS project and bucket must be specified via:\n"
+                    "  1. Command-line args: --gcs-project and --gcs-bucket\n"
+                    "  2. Environment variables: GCS_PROJECT_ID and GCS_BUCKET_NAME\n"
+                    "  3. .env file with the above variables"
+                )
+        else:
+            self.gcs_project = gcs_project
+            self.gcs_bucket = gcs_bucket
+
         self.gcs_uploader = None
         self.gcs_image_urls = {}
 
@@ -279,7 +295,8 @@ class NaverBlogConverter:
         instructions.append("## Quick Helper Script\n\n")
         instructions.append("To replace image placeholders automatically:\n\n")
         instructions.append("```bash\n")
-        instructions.append(f"cd /Users/julius/Documents/naver_blog\n")
+        script_dir = Path(__file__).parent.resolve()
+        instructions.append(f"cd {script_dir}\n")
         instructions.append(f"uv run python update_image_urls.py {self.output_dir}/output.html\n")
         instructions.append("```\n\n")
         instructions.append("This script will interactively prompt you for each Naver CDN URL.\n")
@@ -343,13 +360,16 @@ class NaverBlogConverter:
                 print(f"\nStep 7.5: Uploading images to Google Cloud Storage...")
                 try:
                     from gcs_uploader import GCSUploader
+                    from config import GCS_SUBFOLDER
                     self.gcs_uploader = GCSUploader(self.gcs_project, self.gcs_bucket)
 
                     if not self.gcs_uploader.ensure_bucket_exists():
                         print("  ✗ Failed to initialize GCS bucket")
                         print("  Continuing without GCS upload...")
                     else:
-                        self.gcs_image_urls = self.gcs_uploader.upload_images_from_dir(self.images_dir)
+                        # Use configured subfolder with trailing slash
+                        prefix = f"{GCS_SUBFOLDER}/" if GCS_SUBFOLDER else ""
+                        self.gcs_image_urls = self.gcs_uploader.upload_images_from_dir(self.images_dir, prefix=prefix)
                         print(f"  ✓ Uploaded {len(self.gcs_image_urls)} images to GCS")
 
                         # Now replace placeholders in HTML with actual URLs
@@ -400,12 +420,20 @@ class NaverBlogConverter:
         print(f"\n{'='*60}")
         print("NEXT STEPS:")
         print(f"{'='*60}")
-        print("1. Upload PNG images from images/ to Naver blog editor")
-        print("2. Get CDN URLs (right-click image → Copy image address)")
-        print("3. Run helper script to replace placeholders:")
-        print(f"   cd /Users/julius/Documents/naver_blog")
-        print(f"   uv run python update_image_urls.py {self.output_dir}/output.html")
-        print("4. Paste updated HTML into Naver blog via DevTools (F12)")
+        if self.use_gcs and self.gcs_image_urls:
+            print("✓ Images uploaded to GCS - HTML ready to paste!")
+            print("1. Open the HTML file from the output directory")
+            print("2. Copy all content (Cmd+A, Cmd+C)")
+            print("3. Paste into Naver blog via DevTools (F12)")
+            print("4. Preview and publish")
+        else:
+            print("1. Upload PNG images from images/ to Naver blog editor")
+            print("2. Get CDN URLs (right-click image → Copy image address)")
+            print("3. Run helper script to replace placeholders:")
+            script_dir = Path(__file__).parent.resolve()
+            print(f"   cd {script_dir}")
+            print(f"   uv run python update_image_urls.py {self.output_dir}/output.html")
+            print("4. Paste updated HTML into Naver blog via DevTools (F12)")
         print(f"\nFull instructions: {self.output_dir}/INSTRUCTIONS.md")
         print(f"{'='*60}")
 
@@ -426,8 +454,8 @@ For more info, see README.md and GCS_SETUP.md
     parser.add_argument('input', help='Input markdown file path')
     parser.add_argument('-o', '--output', help='Output directory (default: naver_output_TIMESTAMP)')
     parser.add_argument('--gcs', action='store_true', help='Upload images to Google Cloud Storage')
-    parser.add_argument('--gcs-project', help='GCS project ID (default: n8nprojects)')
-    parser.add_argument('--gcs-bucket', help='GCS bucket name (default: n8nprojects-naverblog)')
+    parser.add_argument('--gcs-project', help='GCS project ID (required with --gcs, or set GCS_PROJECT_ID env var)')
+    parser.add_argument('--gcs-bucket', help='GCS bucket name (required with --gcs, or set GCS_BUCKET_NAME env var)')
 
     args = parser.parse_args()
 

@@ -22,10 +22,11 @@ except ImportError:
     pass  # dotenv not required
 
 # Google Cloud Storage Configuration
-GCS_PROJECT_ID = os.getenv('GCS_PROJECT_ID', 'n8nprojects-444223')
-GCS_BUCKET_NAME = os.getenv('GCS_BUCKET_NAME', 'n8nprojects-naverblog')
-GCS_LOCATION = os.getenv('GCS_LOCATION', 'ASIA-NORTHEAST3')  # Seoul
-GCS_SUBFOLDER = os.getenv('GCS_SUBFOLDER', 'naverblog')
+# These must be set via environment variables or .env file
+GCS_PROJECT_ID = os.getenv('GCS_PROJECT_ID')  # Required: Your GCP project ID
+GCS_BUCKET_NAME = os.getenv('GCS_BUCKET_NAME')  # Required: Your GCS bucket name
+GCS_LOCATION = os.getenv('GCS_LOCATION', 'ASIA-NORTHEAST3')  # Default: Seoul (change if needed)
+GCS_SUBFOLDER = os.getenv('GCS_SUBFOLDER', 'blog-images')  # Default subfolder in bucket
 GCS_CREDENTIALS_PATH = os.getenv('GCS_CREDENTIALS_PATH', None)
 
 # Converter Settings

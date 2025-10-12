@@ -66,9 +66,9 @@ else
             # Create .env file
             if [ ! -f .env ]; then
                 echo "GCS_PROJECT_ID=$project_id" > .env
-                echo "GCS_BUCKET_NAME=${project_id}-naverblog" >> .env
+                echo "GCS_BUCKET_NAME=${project_id}-blog-images" >> .env
                 echo "GCS_LOCATION=ASIA-NORTHEAST3" >> .env
-                echo "GCS_SUBFOLDER=naverblog" >> .env
+                echo "GCS_SUBFOLDER=blog-images" >> .env
                 echo "✓ .env 파일 생성됨 / .env file created"
             fi
         fi
@@ -104,18 +104,25 @@ echo ""
 read -p "Claude Code 슬래시 커맨드를 설치하시겠습니까? (y/n) / Install Claude Code slash command? (y/n): " -n 1 -r
 echo ""
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-    read -p "Obsidian 볼트 경로를 입력하세요 / Enter your Obsidian vault path: " vault_path
+    read -p "프로젝트/저장소 경로를 입력하세요 / Enter your project/repository path: " project_path
 
-    if [ -n "$vault_path" ] && [ -d "$vault_path" ]; then
+    if [ -n "$project_path" ] && [ -d "$project_path" ]; then
         # Create .claude/commands directory if it doesn't exist
-        mkdir -p "$vault_path/.claude/commands"
+        mkdir -p "$project_path/.claude/commands"
 
         # Copy naver.md command
         if [ -f "commands/naver.md" ]; then
-            cp commands/naver.md "$vault_path/.claude/commands/"
+            cp commands/naver.md "$project_path/.claude/commands/"
+
+            # Set NAVER_BLOG_CONVERTER_DIR in the command file
+            CONVERTER_DIR=$(pwd)
+            sed -i.bak "s|\$NAVER_BLOG_CONVERTER_DIR|$CONVERTER_DIR|g" "$project_path/.claude/commands/naver.md"
+            rm "$project_path/.claude/commands/naver.md.bak" 2>/dev/null || true
+
             echo "✓ /naver 커맨드가 설치되었습니다."
             echo "✓ /naver command installed."
-            echo "  위치 / Location: $vault_path/.claude/commands/naver.md"
+            echo "  위치 / Location: $project_path/.claude/commands/naver.md"
+            echo "  변환기 경로 / Converter path: $CONVERTER_DIR"
         else
             echo "⚠️  commands/naver.md 파일을 찾을 수 없습니다."
             echo "⚠️  commands/naver.md file not found."

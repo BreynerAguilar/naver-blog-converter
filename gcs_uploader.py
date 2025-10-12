@@ -27,7 +27,7 @@ class GCSUploader:
         Initialize GCS uploader.
 
         Args:
-            project_id: GCP project ID (e.g., 'n8nprojects')
+            project_id: GCP project ID (e.g., 'my-project-123')
             bucket_name: GCS bucket name for blog images
             credentials_path: Path to service account JSON (optional, uses default auth if not provided)
         """
@@ -104,13 +104,13 @@ class GCSUploader:
         # Return public URL
         return blob.public_url
 
-    def upload_images_from_dir(self, images_dir: Path, prefix: str = "naverblog/") -> Dict[str, str]:
+    def upload_images_from_dir(self, images_dir: Path, prefix: str = "") -> Dict[str, str]:
         """
         Upload all PNG images from a directory.
 
         Args:
             images_dir: Directory containing images
-            prefix: Optional prefix for blob names (e.g., "blog/2025/")
+            prefix: Optional prefix for blob names (e.g., "blog-images/" or "" for root)
 
         Returns:
             Dict mapping local filename to public URL
@@ -143,10 +143,10 @@ def test_upload():
     """Test GCS upload with sample configuration."""
     import sys
 
-    if len(sys.argv) < 3:
+    if len(sys.argv) < 4:
         print("Usage: python gcs_uploader.py <project_id> <bucket_name> <images_dir>")
         print("\nExample:")
-        print("  python gcs_uploader.py n8nprojects blog-images naver_output_20251012_153527/images")
+        print("  python gcs_uploader.py my-gcp-project my-bucket-name naver_output_20251012_153527/images")
         sys.exit(1)
 
     project_id = sys.argv[1]

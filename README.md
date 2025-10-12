@@ -1,6 +1,6 @@
 # 네이버 블로그 변환기 (Naver Blog Converter)
 
-Obsidian 마크다운 파일을 네이버 블로그 호환 HTML로 자동 변환하는 도구입니다. Mermaid 다이어그램을 PNG 이미지로 렌더링하고 Google Cloud Storage에 자동 업로드합니다.
+마크다운 파일을 네이버 블로그 호환 HTML로 자동 변환하는 도구입니다. Mermaid 다이어그램을 PNG 이미지로 렌더링하고 Google Cloud Storage에 자동 업로드합니다.
 
 ## 주요 기능
 
@@ -45,14 +45,14 @@ uv run python md2naver.py "your-file.md" --gcs -o custom_output
 
 ## Claude Code에서 사용하기
 
-설치 후 Obsidian 볼트에서 사용 가능:
+설치 후 마크다운 저장소에서 사용 가능:
 
 ```
-/naver "1011 산일전기와 전력 시장 공급망 분석.md"
+/naver "example-article.md"
 ```
 
 Claude가 자동으로:
-- 볼트에서 파일 찾기
+- 저장소에서 파일 찾기
 - GCS 업로드와 함께 변환
 - 결과 요약 표시
 - 다음 단계 안내

@@ -1,6 +1,6 @@
 # Naver Blog Converter with Google Cloud Storage
 
-Transform Obsidian markdown files with mermaid diagrams into Naver blog-compatible HTML with automatic image hosting on Google Cloud Storage.
+Transform markdown files with mermaid diagrams into Naver blog-compatible HTML with automatic image hosting on Google Cloud Storage.
 
 ## Features
 
@@ -24,7 +24,7 @@ uv sync
 
 ```bash
 gcloud auth application-default login
-gcloud config set project n8nprojects-444223
+gcloud config set project YOUR-PROJECT-ID
 ```
 
 ### 3. Convert Your Markdown
@@ -44,16 +44,16 @@ uv run python md2naver.py "your-file.md"
 3. Paste into Naver blog editor
 4. Done! Images work immediately with GCS.
 
-## Usage from Obsidian Vault
+## Usage with Claude Code
 
 Use the `/naver` slash command:
 
 ```
-/naver "1011 산일전기와 전력 시장 공급망 분석.md"
+/naver "example-article.md"
 ```
 
 Claude will automatically:
-- Find the file in your vault
+- Find the file in your repository
 - Convert with GCS upload
 - Show you the results
 - Tell you where to find output.html
@@ -94,12 +94,12 @@ naver_blog/
 
 ## Configuration
 
-### Current Setup
+### Example Setup
 
-- **GCS Project:** `n8nprojects-444223`
-- **GCS Bucket:** `n8nprojects-naverblog`
-- **Image Location:** `naverblog/` subfolder
-- **Region:** Seoul (ASIA-NORTHEAST3)
+- **GCS Project:** `YOUR-PROJECT-ID`
+- **GCS Bucket:** `your-bucket-name`
+- **Image Location:** `naverblog/` subfolder (or your preferred folder)
+- **Region:** Your preferred region (e.g., ASIA-NORTHEAST3 for Seoul)
 
 ### For Other Projects
 
@@ -158,8 +158,8 @@ naver_output_20251012_164509/
 
 Images are accessible at:
 ```
-https://storage.googleapis.com/n8nprojects-naverblog/naverblog/mermaid_1.png
-https://storage.googleapis.com/n8nprojects-naverblog/naverblog/mermaid_2.png
+https://storage.googleapis.com/your-bucket-name/naverblog/mermaid_1.png
+https://storage.googleapis.com/your-bucket-name/naverblog/mermaid_2.png
 ...
 ```
 
@@ -236,18 +236,18 @@ See `NAVER_CDN_GUIDE.md` for complete manual workflow.
 
 ## Examples
 
-### Convert File from Obsidian Vault
+### Convert File from Markdown Directory
 
 ```bash
 uv run python md2naver.py \
-  "../Obsidian Vault/base/글감/1011 산일전기와 전력 시장 공급망 분석.md" \
+  "../markdown-files/article.md" \
   --gcs
 ```
 
 ### Batch Convert Multiple Files
 
 ```bash
-for file in "../Obsidian Vault/base/글감"/*.md; do
+for file in "../markdown-files"/*.md; do
   uv run python md2naver.py "$file" --gcs
 done
 ```
@@ -266,7 +266,7 @@ uv run python /Users/julius/Documents/naver_blog/md2naver.py \
 
 - **Mermaid Live Editor:** https://mermaid.live/
 - **Color Scripter:** https://colorscripter.com/ (code highlighting for Naver)
-- **GCS Console:** https://console.cloud.google.com/storage/browser/n8nprojects-naverblog
+- **GCS Console:** https://console.cloud.google.com/storage/ (view your buckets)
 - **Naver Blog:** https://blog.naver.com/
 
 ## Documentation
@@ -278,7 +278,7 @@ uv run python /Users/julius/Documents/naver_blog/md2naver.py \
 
 ## License
 
-Personal tool for converting Obsidian markdown to Naver blog format.
+Tool for converting markdown to Naver blog format.
 
 ---
 
